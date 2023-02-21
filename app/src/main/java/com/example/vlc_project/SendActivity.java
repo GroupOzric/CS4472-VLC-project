@@ -16,6 +16,8 @@ import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.Collections;
+
 public class SendActivity extends AppCompatActivity {
 
     TextInputEditText textInputEditText;
@@ -25,7 +27,7 @@ public class SendActivity extends AppCompatActivity {
     int counter = 0;
     private CameraManager cameraManager;
     private String cameraId;
-    private static final long BIT_DURATION = 500;
+    private static final long BIT_DURATION = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,8 @@ public class SendActivity extends AppCompatActivity {
         sendButton = (Button) findViewById(R.id.button);
         textView = (TextView) findViewById(R.id.sendPreview);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.INVISIBLE);
+
 
         textView.setText("Enter Message to Send !");
         sendButton.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +64,7 @@ public class SendActivity extends AppCompatActivity {
                 sendAsciiData(Character.toString(c));
                 publishProgress((i+1)*100/data.length());
             }
+            turnFlashlightOff();
             return null;
         }
 
@@ -75,6 +80,14 @@ public class SendActivity extends AppCompatActivity {
             // Update UI after sending data
             textView.setText("Data Sent Successfully!");
             progressBar.setVisibility(View.INVISIBLE);
+            progressBar.setProgress(0);
+
+            textView.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    textView.setText("Enter Message to Send");
+                }
+            }, 5000);
         }
 
     }
@@ -89,12 +102,16 @@ public class SendActivity extends AppCompatActivity {
             for (int i = 0; i < data.length(); i++) {
                 char c = data.charAt(i);
                 String binaryString = Integer.toBinaryString(c); // convert the character to binary string
+                if(binaryString.length()<8){
+                    binaryString =String.join("", Collections.nCopies((8-binaryString.length()), "0"))+binaryString;
+                }
+                System.out.println(String.format("%c : %s",c,binaryString));
                 for (int j = 0; j < binaryString.length(); j++) {
                     if (binaryString.charAt(j) == '1') {
                         turnFlashlightOn();
                         Thread.sleep(BIT_DURATION);
-                        turnFlashlightOff();
                     } else if (binaryString.charAt(j) == '0') {
+                        turnFlashlightOff();
                         Thread.sleep(BIT_DURATION);
                     }
                 }
