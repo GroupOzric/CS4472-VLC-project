@@ -27,7 +27,10 @@ public class SendActivity extends AppCompatActivity {
     int counter = 0;
     private CameraManager cameraManager;
     private String cameraId;
-    private static final long BIT_DURATION = 1000;
+//    private static final long BIT_DURATION = 300;
+    private static final long BIT_DURATION_1 = 100;
+    private static final long BIT_DURATION_0 = 500;
+    int data_length =0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +48,7 @@ public class SendActivity extends AppCompatActivity {
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                textView.setText("Sending Data....");
+                textView.setText("Sending data....");
                 progressBar.setVisibility(View.VISIBLE);
                 String data = String.valueOf(textInputEditText.getText());
 //                sendAsciiData(data);
@@ -58,7 +61,17 @@ public class SendActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(String... params) {
             String data = params[0];
+
             // Send data here and update progress
+            try {
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+//            int data_length = data.length();
+//            String ascii_data_length = Character.toString((char) data_length);
+//            data = ascii_data_length + data;
+            System.out.println(data);
             for (int i = 0; i < data.length(); i++) {
                 char c = data.charAt(i);
                 sendAsciiData(Character.toString(c));
@@ -109,10 +122,14 @@ public class SendActivity extends AppCompatActivity {
                 for (int j = 0; j < binaryString.length(); j++) {
                     if (binaryString.charAt(j) == '1') {
                         turnFlashlightOn();
-                        Thread.sleep(BIT_DURATION);
-                    } else if (binaryString.charAt(j) == '0') {
+                        Thread.sleep(BIT_DURATION_1);
                         turnFlashlightOff();
-                        Thread.sleep(BIT_DURATION);
+                        Thread.sleep(1000);
+                    } else if (binaryString.charAt(j) == '0') {
+                        turnFlashlightOn();
+                        Thread.sleep(BIT_DURATION_0);
+                        turnFlashlightOff();
+                        Thread.sleep(1000);
                     }
                 }
                 counter++;
