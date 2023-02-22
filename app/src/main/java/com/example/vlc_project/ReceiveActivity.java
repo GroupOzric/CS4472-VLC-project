@@ -15,7 +15,7 @@ public class ReceiveActivity extends Activity {
 
     Button button;
     TextView textView1;
-    Button button2;
+//    Button button2;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -46,7 +46,7 @@ public class ReceiveActivity extends Activity {
         final Context context = this;
 
         button = (Button) findViewById(R.id.button1);
-        button2 = (Button) findViewById(R.id.dbview);
+//        button2 = (Button) findViewById(R.id.dbview);
         Log.d("LOADEDE", "addlist");
         button.setOnClickListener(new OnClickListener() {
 

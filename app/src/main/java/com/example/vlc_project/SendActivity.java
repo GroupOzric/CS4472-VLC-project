@@ -28,8 +28,8 @@ public class SendActivity extends AppCompatActivity {
     private CameraManager cameraManager;
     private String cameraId;
 //    private static final long BIT_DURATION = 300;
-    private static final long BIT_DURATION_1 = 100;
-    private static final long BIT_DURATION_0 = 500;
+    private static final long BIT_DURATION_1 = 50;
+    private static final long BIT_DURATION_0 = 250;
     int data_length =0;
 
     @Override
@@ -124,12 +124,12 @@ public class SendActivity extends AppCompatActivity {
                         turnFlashlightOn();
                         Thread.sleep(BIT_DURATION_1);
                         turnFlashlightOff();
-                        Thread.sleep(300);
+                        Thread.sleep(150);
                     } else if (binaryString.charAt(j) == '0') {
                         turnFlashlightOn();
                         Thread.sleep(BIT_DURATION_0);
                         turnFlashlightOff();
-                        Thread.sleep(300);
+                        Thread.sleep(150);
                     }
                 }
                 counter++;
