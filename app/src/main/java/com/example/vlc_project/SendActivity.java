@@ -28,8 +28,8 @@ public class SendActivity extends AppCompatActivity {
     private CameraManager cameraManager;
     private String cameraId;
 //    private static final long BIT_DURATION = 300;
-    private static final long BIT_DURATION_1 = 100;
-    private static final long BIT_DURATION_0 = 500;
+    private static final long BIT_DURATION_1 = 50;
+    private static final long BIT_DURATION_0 = 250;
     int data_length =0;
 
     @Override
@@ -68,9 +68,9 @@ public class SendActivity extends AppCompatActivity {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-//            int data_length = data.length();
-//            String ascii_data_length = Character.toString((char) data_length);
-//            data = ascii_data_length + data;
+            int data_length = data.length();
+            String ascii_data_length = Character.toString((char) data_length);
+            data = ascii_data_length + data;
             System.out.println(data);
             for (int i = 0; i < data.length(); i++) {
                 char c = data.charAt(i);
@@ -124,12 +124,12 @@ public class SendActivity extends AppCompatActivity {
                         turnFlashlightOn();
                         Thread.sleep(BIT_DURATION_1);
                         turnFlashlightOff();
-                        Thread.sleep(1000);
+                        Thread.sleep(150);
                     } else if (binaryString.charAt(j) == '0') {
                         turnFlashlightOn();
                         Thread.sleep(BIT_DURATION_0);
                         turnFlashlightOff();
-                        Thread.sleep(1000);
+                        Thread.sleep(150);
                     }
                 }
                 counter++;

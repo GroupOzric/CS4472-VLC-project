@@ -6,13 +6,46 @@
     android:layout_height="match_parent"
     tools:context=".ReceiveActivity">
 
+
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Clicked Receive Button !"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="196dp"
+        android:text="No data to display"
+        android:textSize="22dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/premessage" />
+
+    <TextView
+        android:id="@+id/premessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="258dp"
+        android:textColor="#6200ee"
+        android:text="Previous Message"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button1" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="333dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="73dp"
+        android:text="VL Scan"
+        android:textColor="@color/white"
+        android:backgroundTint="#6200ee"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
